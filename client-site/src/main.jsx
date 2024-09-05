@@ -5,6 +5,7 @@ import './index.css';
 import Root from './Root/Root';
 import Home from './pages/Home/Home';
 import SingUp from './pages/SingUp/SingUp';
+import SingIn from './pages/SingIn/SingIn';
 
 
 const router = createBrowserRouter([
@@ -22,7 +23,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/singin',
-        element: <SingUp />
+        element: <SingIn />
       },
     ]
   },

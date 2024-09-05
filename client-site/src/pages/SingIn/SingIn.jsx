@@ -1,10 +1,21 @@
 import React from 'react';
+import image from '../../assets/singupimage.png'
 
 const SingIn = () => {
     return (
-        <div>
-            Sing Ing page
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus, praesentium blanditiis nulla sequi facere in assumenda delectus, maiores dolores ipsam vero iste excepturi voluptatum qui incidunt expedita eaque nihil quam?
+        <div className='h-fit'>
+            <div className="flex items-center">
+                {/* sing content */}
+                <div className="">
+                    <form >
+
+                    </form>
+                </div>
+                {/* image  */}
+                <div className="">
+                    <img src={image} alt="" />
+                </div>
+            </div>
         </div>
     );
 };
