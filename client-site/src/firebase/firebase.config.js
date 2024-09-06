@@ -6,12 +6,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyBaA2qq8tLDThrWspR1Spu0Ze_l285BK-E",
-    authDomain: "furniflex-f0c39.firebaseapp.com",
-    projectId: "furniflex-f0c39",
-    storageBucket: "furniflex-f0c39.appspot.com",
-    messagingSenderId: "293564004304",
-    appId: "1:293564004304:web:b0b46cc2ad9db8354eebd5"
+    apiKey: import.meta.env.VITE_APIKEY,
+    authDomain: import.meta.env.VITE_AUTHDOMAIN,
+    projectId: import.meta.env.VITE_PROJECTID,
+    storageBucket: import.meta.env.VITE_STORAGEBUCKET,
+    messagingSenderId: import.meta.env.VITE_MESSAGINGSENDERID,
+    appId: import.meta.env.VITE_APPID
 };
 
 // Initialize Firebase

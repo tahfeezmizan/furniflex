@@ -3,17 +3,18 @@ import { IoMdClose } from 'react-icons/io';
 import { RiMenu3Fill, RiShoppingBagLine } from 'react-icons/ri';
 import { NavLink, useLocation } from 'react-router-dom';
 import logo from '../../assets/Logo.png'
+import useAuth from '../../hooks/useAuth';
 
 const Navbar = () => {
+    const { user, logOut } = useAuth()
     const [open, setOpen] = useState(false);
     const location = useLocation();
-    const user = false;
 
     const hideNavbar = location.pathname === "/singup" || location.pathname === "/singin"
 
     const links = <>
         <NavLink to='/'>Home</NavLink>
-        <NavLink to='/'>Products</NavLink>
+        <NavLink to='/products'>Products</NavLink>
         <NavLink to='/'>Categories</NavLink>
         <NavLink to='/'>Custom</NavLink>
         <NavLink to='/'>Blog</NavLink>
@@ -50,9 +51,14 @@ const Navbar = () => {
                     <div className="text-3xl">
                         <RiShoppingBagLine />
                     </div>
+
                     <div className="">
                         {user ? (
-                            <img className='size-10 rounded-full' src="https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg" alt="user profile image" />
+                            <>
+                            {/* profle image  */}
+                                <img className='size-10 rounded-full' src="https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg" alt="user profile image" />
+                                <button onClick={() => {logOut()}}>Logout</button>
+                            </>
                         ) :
                             (
                                 <NavLink to={'/singin'}>Sing In</NavLink>

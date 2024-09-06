@@ -2,21 +2,32 @@ import React, { useState } from 'react';
 import { FaApple, FaEye, FaEyeSlash } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import { MdCheckBox, MdOutlineCheckBoxOutlineBlank } from 'react-icons/md';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import logo from '../../assets/favicon.svg';
 import image from '../../assets/singupimage.png';
+import useAuth from '../../hooks/useAuth';
 
 const SignIn = () => {
+    const { singIn } = useAuth();
     const [showPassword, setShowPassword] = useState(false);
     const [agreeTerms, setAgreeTerms] = useState(false);
+    const navigate = useNavigate();
 
     // Handle form submission
     const handleSubmit = (e) => {
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
-
         console.log(email, password);
+
+        singIn(email, password)
+            .then(resule => {
+                console.log(resule.user);
+                navigate('/')
+            })
+            .catch(error => {
+                console.error(error);
+            })
     };
 
     return (

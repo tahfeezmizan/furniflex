@@ -22,8 +22,12 @@ const SingUp = () => {
         const data = { fastName, lastName, email, password };
 
         createUser(email, password)
-            .then(resule)
-
+            .then(resule => {
+                console.log(resule.user);
+            })
+            .catch(error => {
+                console.error(error);
+            })
     };
 
     return (
