@@ -5,8 +5,10 @@ import { MdCheckBox, MdOutlineCheckBoxOutlineBlank } from 'react-icons/md';
 import { NavLink } from 'react-router-dom';
 import logo from '../../assets/favicon.svg';
 import image from '../../assets/singupimage.png';
+import useAuth from '../../hooks/useAuth';
 
 const SingUp = () => {
+    const { createUser } = useAuth()
     const [showPassword, setShowPassword] = useState(false);
     const [agreeTerms, setAgreeTerms] = useState(false);
 
@@ -17,8 +19,11 @@ const SingUp = () => {
         const lastName = e.target.lastName.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
+        const data = { fastName, lastName, email, password };
 
-        console.log(email, password);
+        createUser(email, password)
+            .then(resule)
+
     };
 
     return (

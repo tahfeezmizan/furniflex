@@ -6,6 +6,7 @@ import Root from './Root/Root';
 import Home from './pages/Home/Home';
 import SingUp from './pages/SingUp/SingUp';
 import SingIn from './pages/SingIn/SingIn';
+import AuthProvider from './Provider/AuthProvider';
 
 
 const router = createBrowserRouter([
@@ -33,6 +34,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>,
 )
