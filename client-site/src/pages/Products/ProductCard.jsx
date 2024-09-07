@@ -1,8 +1,9 @@
+import axios from 'axios';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { BsBag } from 'react-icons/bs';
-import { toast } from 'react-toastify';
 import useAuth from '../../hooks/useAuth';
+import { toast } from 'react-toastify';
 import useAxios from '../../hooks/useAxios';
 import useCarts from '../../hooks/useCarts';
 
@@ -13,9 +14,7 @@ const ProductCard = ({ product }) => {
     const { image, title, pricenew, priceold, description, save, _id } = product;
 
     const handleAddToCart = () => {
-        // Check if the user is logged in
         if (!user) {
-            // If not logged in, show an alert/toast
             toast.warn('Please log in to add items to your cart!');
             alert('Please log in to add items to your cart!')
             return;
@@ -28,8 +27,6 @@ const ProductCard = ({ product }) => {
             image: image,
             price: pricenew,
         };
-
-        console.log(cartitem);
 
         axiosCommon.post(`/carts`, cartitem)
             .then(res => {

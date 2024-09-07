@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import logo from "../../assets/Footer-Logo.png"
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
+import flag from "../../assets/🇺🇸.png"
 
 
 const Footer = () => {
@@ -46,7 +47,8 @@ const Footer = () => {
                         </div>
                     </div>
                 </div>
-                <div className="flex justify-between items-center border-t border-[#252948] pt-6">
+
+                <div className="flex flex-col md:flex-row justify-between items-center  border-t border-[#252948] pt-6">
                     <div className="flex items-center gap-4 text-xl text-white mb-5">
                         <p className=" rounded-full"><FaFacebook /></p>
                         <p className=" rounded-full"><FaInstagram /></p>
@@ -54,7 +56,7 @@ const Footer = () => {
                         <p className=" rounded-full"><FaTwitter /></p>
                     </div>
 
-                    <div className="text-[#81859F] flex space-x-6 font-semibold font-Barlow">
+                    <div className="text-[#81859F] flex flex-wrap space-x-6 font-semibold font-Barlow">
                         <Link>Master Plan</Link>
                         <Link>Jobs</Link>
                         <Link>Invest</Link>
@@ -63,10 +65,12 @@ const Footer = () => {
                         <Link>Contact</Link>
                     </div>
 
-                    <div className="">
+                    <div className="flex items-center gap-2">
+                        <img src={flag} alt="" />
                         <p className="text-[#81859F] font-Barlow font-semibold">United States (English)</p>
                     </div>
                 </div>
+                <p className="text-center text-[#323544] font-Barlow mt-8 font-semibold text-lg">EEVE © 2024. All rights reserved.</p>
             </div>
         </div>
     );

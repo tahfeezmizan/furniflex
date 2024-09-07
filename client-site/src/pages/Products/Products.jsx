@@ -113,7 +113,7 @@ const Products = () => {
             <div className="w-full lg:w-4/5 mx-auto py-20 px-3 lg:px-0">
                 <div className="grid grid-cols-1 md:grid-cols-1 xl:grid-cols-6 gap-0 md:gap-8">
                     <div className="col-span-1 w-full sm:w-auto border-r">
-                        <div className="space-y-3 w-full">
+                        <div className="space-y-3 w-full mb-6 text-center md:text-start">
                             <button
                                 className={`py-2 font-Barlow text-lg font-semibold w-4/5 rounded-md ${category === 'Rocking Chair' ? 'bg-black text-white' : 'border-y text-[#717171]'}`}
                                 onClick={() => handleClick('Rocking Chair')}

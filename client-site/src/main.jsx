@@ -11,6 +11,7 @@ import AuthProvider from './Provider/AuthProvider';
 import Root from './Root/Root';
 import { ToastContainer } from 'react-toastify';
 import CheckOut from './pages/CheckOut/CheckOut';
+import 'react-toastify/dist/ReactToastify.css';
 
 const router = createBrowserRouter([
   {

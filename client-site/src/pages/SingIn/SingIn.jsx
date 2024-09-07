@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { FaApple, FaEye, FaEyeSlash } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import { MdCheckBox, MdOutlineCheckBoxOutlineBlank } from 'react-icons/md';
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import logo from '../../assets/favicon.svg';
 import image from '../../assets/singupimage.png';
 import useAuth from '../../hooks/useAuth';
+import { toast } from 'react-toastify';
 
 const SignIn = () => {
-    const { singIn } = useAuth();
+    const { singIn, googleLogin } = useAuth();
     const [showPassword, setShowPassword] = useState(false);
     const [agreeTerms, setAgreeTerms] = useState(false);
     const navigate = useNavigate();
@@ -22,8 +23,10 @@ const SignIn = () => {
 
         singIn(email, password)
             .then(resule => {
-                console.log(resule.user);
-                navigate('/')
+                if (resule.user) {
+                    toast.success("Login Success")
+                    navigate('/')
+                }
             })
             .catch(error => {
                 console.error(error);
@@ -105,6 +108,14 @@ const SignIn = () => {
 
                         <div className="flex items-center justify-center gap-4 mb-5">
                             <button
+                                onClick={() => googleLogin()
+                                    .then(result => {
+                                        if (result?.user) {
+                                            toast.success("Google Login Success")
+                                            navigate('/')
+                                        }
+                                    })
+                                }
                                 className="py-3 font-Barlow text-sm font-medium w-full border text-black rounded-md flex items-center justify-center gap-2"
                             >
                                 <span className='text-xl'><FcGoogle /></span> Sign in with Google
