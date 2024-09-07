@@ -9,9 +9,9 @@ const Products = () => {
     const { count } = useLoaderData();
     const [category, setCategory] = useState('');
     const itemPerPage = 6;
-    const numberOfPages = Math.ceil(count / itemPerPage); 
-    const [currentPage, setCurrentPage] = useState(1); 
-    const pages = [...Array(numberOfPages).keys()].map(i => i + 1); 
+    const numberOfPages = Math.ceil(count / itemPerPage);
+    const [currentPage, setCurrentPage] = useState(1);
+    const pages = [...Array(numberOfPages).keys()].map(i => i + 1);
 
     useEffect(() => {
         const fetchUrl = `${import.meta.env.VITE_BASE_URL}/products?page=${currentPage - 1}&limit=${itemPerPage}${category ? `&category=${category}` : ''}`;
@@ -111,10 +111,6 @@ const Products = () => {
     return (
         <div className="200">
             <div className="w-full lg:w-4/5 mx-auto py-20 px-3 lg:px-0">
-                {/* <div className="flex flex-col md:flex-row justify-between items-center gap-6 mb-10">
-                    <h2 className="text-3xl md:text-5xl font-bold pl-2">All Products</h2>
-                </div> */}
-
                 <div className="grid grid-cols-1 md:grid-cols-1 xl:grid-cols-6 gap-0 md:gap-8">
                     <div className="col-span-1 w-full sm:w-auto border-r">
                         <div className="space-y-3 w-full">

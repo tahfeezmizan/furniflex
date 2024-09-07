@@ -10,9 +10,7 @@ const Navbar = () => {
     const { user, logOut } = useAuth();
     const [open, setOpen] = useState(false);
     const location = useLocation();
-    const { carts } = useCarts();  // Use object destructuring
-    console.log('Navbar carts', carts);
-
+    const { carts } = useCarts();
     const hideNavbar = location.pathname === "/singup" || location.pathname === "/singin"
 
     const links = <>
@@ -51,10 +49,10 @@ const Navbar = () => {
                 </div>
 
                 <div className="hidden lg:flex items-center justify-between gap-6">
-                    <div className="text-3xl flex ">
+                    <NavLink to={"/checkout"} className="text-3xl flex ">
                         <span className='text-4xl relative'><RiShoppingBagLine /></span>
                         <span className='absolute bottom-10 right-[272px] bg-black text-white text-sm font-semibold font-Barlow rounded-full px-2'>{carts.length}</span>
-                    </div>
+                    </NavLink>
 
                     <div className="">
                         {user ? (

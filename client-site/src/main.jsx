@@ -10,6 +10,7 @@ import SingUp from './pages/SingUp/SingUp';
 import AuthProvider from './Provider/AuthProvider';
 import Root from './Root/Root';
 import { ToastContainer } from 'react-toastify';
+import CheckOut from './pages/CheckOut/CheckOut';
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: '/singin',
         element: <SingIn />
+      },
+      {
+        path: '/checkout',
+        element: <CheckOut />
       },
       {
         path: '/products',

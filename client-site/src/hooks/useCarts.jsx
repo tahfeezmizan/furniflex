@@ -12,8 +12,7 @@ const useCarts = () => {
             return res.data;
         }
     });
-    console.log('from hook', carts);
-    return { carts, refetch };  // Return carts as an object to avoid confusion
+    return { carts, refetch };
 };
 
 export default useCarts;

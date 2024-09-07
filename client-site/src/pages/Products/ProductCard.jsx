@@ -1,9 +1,8 @@
-import axios from 'axios';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { BsBag } from 'react-icons/bs';
-import useAuth from '../../hooks/useAuth';
 import { toast } from 'react-toastify';
+import useAuth from '../../hooks/useAuth';
 import useAxios from '../../hooks/useAxios';
 import useCarts from '../../hooks/useCarts';
 
