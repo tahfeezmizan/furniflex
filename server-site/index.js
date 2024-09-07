@@ -6,7 +6,7 @@ const port = process.env.PORT || 5000;
 const { MongoClient, ServerApiVersion } = require('mongodb');
 
 app.use(cors())
-app.use(express.json())
+app.use(express.json());
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.7utjicv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
@@ -25,6 +25,8 @@ async function run() {
         await client.connect();
 
         const productCollection = client.db('FurniFlexDB').collection('products');
+        const cartsCollection = client.db('FurniFlexDB').collection('carts');
+
 
         app.get('/products', async (req, res) => {
             try {
@@ -36,7 +38,7 @@ async function run() {
 
                 let query = {};
                 if (category) {
-                    query = { category: category }; 
+                    query = { category: category };
                 }
 
                 const result = await productCollection.find(query)
@@ -54,11 +56,31 @@ async function run() {
             }
         });
 
-
         app.get('/productsCount', async (req, res) => {
-            const count = await productCollection.estimatedDocumentCount();
-            res.send({ count })
-        })
+            try {
+                const count = await productCollection.countDocuments(); // Adjust based on your MongoDB setup
+                res.send({ count });
+            } catch (error) {
+                console.error("Failed to fetch products count:", error);
+                res.status(500).send({ message: "Failed to fetch products count." });
+            }
+        });
+
+
+        // Corrected carts post on DB
+        app.post('/carts', async (req, res) => {
+            try {
+                const productItem = req.body; 
+                const result = await cartsCollection.insertOne(productItem);
+                res.send(result); 
+            } catch (error) {
+                console.error("Failed to add product to cart:", error);
+                res.status(500).send({
+                    message: "Failed to add product to cart.",
+                    error: error.message || "Internal Server Error"
+                });
+            }
+        });
 
         // Send a ping to confirm a successful connection
         await client.db("admin").command({ ping: 1 });
