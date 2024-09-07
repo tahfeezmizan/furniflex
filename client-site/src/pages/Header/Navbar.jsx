@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { IoMdClose } from 'react-icons/io';
 import { RiMenu3Fill, RiShoppingBagLine } from 'react-icons/ri';
 import { NavLink, useLocation } from 'react-router-dom';
-import logo from '../../assets/Logo.png'
+import logo from '../../assets/Logo.png';
 import useAuth from '../../hooks/useAuth';
+import useCarts from '../../hooks/useCarts';
 
 const Navbar = () => {
-    const { user, logOut } = useAuth()
+    const { user, logOut } = useAuth();
     const [open, setOpen] = useState(false);
     const location = useLocation();
+    const { carts } = useCarts();  // Use object destructuring
+    console.log('Navbar carts', carts);
 
     const hideNavbar = location.pathname === "/singup" || location.pathname === "/singin"
 
@@ -24,7 +27,7 @@ const Navbar = () => {
     if (hideNavbar) return null;
 
     return (
-        <div className="shadow-md md:shadow-none py-4 lg:py-8 relative z-50">
+        <div className="shadow-md md:shadow-none py-4 lg:py-8 relative z-50 border-b">
             <div className="container mx-auto px-4 flex justify-between items-center">
                 <NavLink to={'/'}>
                     <img src={logo} className='w-32' alt="" />
@@ -48,16 +51,17 @@ const Navbar = () => {
                 </div>
 
                 <div className="hidden lg:flex items-center justify-between gap-6">
-                    <div className="text-3xl">
-                        <RiShoppingBagLine />
+                    <div className="text-3xl flex ">
+                        <span className='text-4xl relative'><RiShoppingBagLine /></span>
+                        <span className='absolute bottom-10 right-[272px] bg-black text-white text-sm font-semibold font-Barlow rounded-full px-2'>{carts.length}</span>
                     </div>
 
                     <div className="">
                         {user ? (
                             <>
-                            {/* profle image  */}
+                                {/* profle image  */}
                                 <img className='size-10 rounded-full' src="https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg" alt="user profile image" />
-                                <button onClick={() => {logOut()}}>Logout</button>
+                                <button onClick={() => { logOut() }}>Logout</button>
                             </>
                         ) :
                             (
