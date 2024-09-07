@@ -34,7 +34,13 @@ const CheckOut = () => {
                     })
             }
         });
+    }
 
+    const handleItemIncrement = () => {
+        console.log("handle Item Increment");
+    }
+    const handleItemDecrement = () => {
+        console.log("handle Item decrement");
     }
 
     const subtotal = carts.reduce((sum, product) => sum + product.price, 0);
@@ -49,9 +55,10 @@ const CheckOut = () => {
                         <div key={product._id} className="flex justify-between items-center p-6 border-b bg-[#FAFAFA]">
                             <div className="flex gap-8">
                                 <div className="flex items-center gap-3">
-                                    <button className="text-lg border px-2 rounded-md">−</button>
+                                    {/* product Increment and Decrement section */}
+                                    <button onClick={handleItemIncrement} className="text-lg border px-2 rounded-md">−</button>
                                     <span>{product.length}</span>
-                                    <button className="text-lg border px-2 rounded-md">+</button>
+                                    <button onClick={handleItemDecrement} className="text-lg border px-2 rounded-md">+</button>
                                 </div>
                                 <img className="w-20 h-20 object-cover rounded-md bg-[#eaeaea] p-3" src={product.image} alt={product.name} />
                                 <h3 className="font-Barlow text-base font-bold">{product.name}</h3>
