@@ -67,12 +67,27 @@ async function run() {
         });
 
 
+        app.get('/carts', async (req, res) => {
+            try {
+                const email = req.query.email;
+                const query = { customerEmail: email }
+                const result = await cartsCollection.find(query).toArray();
+                res.send(result);
+            } catch (error) {
+                console.error("Failed to load carts data:", error);
+                res.status(500).send({
+                    message: "Failed to load carts data.",
+                    error: error.message || "Internal Server Error"
+                });
+            }
+        })
+
         // Corrected carts post on DB
         app.post('/carts', async (req, res) => {
             try {
-                const productItem = req.body; 
+                const productItem = req.body;
                 const result = await cartsCollection.insertOne(productItem);
-                res.send(result); 
+                res.send(result);
             } catch (error) {
                 console.error("Failed to add product to cart:", error);
                 res.status(500).send({
@@ -81,6 +96,24 @@ async function run() {
                 });
             }
         });
+
+
+        // delete own cart data by specific user
+        app.delete('/carts/:email', async (req, res) => {
+            try {
+                const email = req.params.email;              
+                const query = { customerEmail: email }
+                const result = await cartsCollection.deleteOne(query);
+                res.send(result);
+            } catch (error) {
+                console.error("Failed to load carts data:", error);
+                res.status(500).send({
+                    message: "Failed to load carts data.",
+                    error: error.message || "Internal Server Error"
+                });
+            }
+        });
+
 
         // Send a ping to confirm a successful connection
         await client.db("admin").command({ ping: 1 });
