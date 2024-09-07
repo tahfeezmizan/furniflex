@@ -48,11 +48,11 @@ const ProductCard = ({ product }) => {
                 <title></title>
             </Helmet>
             <div className="">
-                <div className="w-full h-[334px] overflow-hidden border-red-600 border">
-                    <img className="w-full h-full bg-[#F2F2F2] p-10 rounded-md object-cover scale-75" src={image} alt={title} />
+                <div className="w-full h-[334px] overflow-hidden">
+                    <img className="w-full h-full bg-[#F2F2F2] p-4 rounded-md object-cover scale-75" src={image} alt={title} />
                 </div>
                 <div className="p-6">
-                    <h2 className="text-lg font-Barlow font-semibold ">{title}</h2>
+                    <h2 className="text-xl font-Barlow font-semibold pb-2">{title}</h2>
                     <div className="flex items-center justify-between gap-5 mb-4">
                         <p className="text-black text-lg font-Barlow font-bold">€{pricenew}.00</p>
                         <p className="text-[#ABABAB] text-lg font-Barlow font-semibold line-through">€{priceold}.00</p>
